@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indiana State Museum Admission</title>
+    <style>
+        body {
+            font-family: 'Verdana', sans-serif;
+            background: linear-gradient(to right, #ff6f61, #de1c70);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+            color: #333;
+        }
+        h1 {
+            color: #064b91;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        label {
+            display: block;
+            margin-top: 20px;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        .price-info {
+            font-size: 1.2em;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+        input[type="number"] {
+            width: 80px;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 10px;
+            border: 1px solid #bdc3c7;
+            font-size: 1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        input[type="number"]:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
+            outline: none;
+        }
+        button {
+            margin-top: 30px;
+            padding: 15px 25px;
+            background: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+        button:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
+        button:active {
+            background: #1f4f7b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> Museum Booking</h1>
+        <form id="ticketForm">
+            <label for="childQuantity">Child (Below 18 years)</label>
+            <span class="price-info">INR 20.00</span>
+            <input type="number" id="childQuantity" name="childQuantity" value="0" min="0">
+
+            <label for="adultQuantity">Adult</label>
+            <span class="price-info">INR 75.00</span>
+            <input type="number" id="adultQuantity" name="adultQuantity" value="0" min="0">
+
+            <label for="seniorQuantity">Foreign Nationals</label>
+            <span class="price-info">INR 500.00</span>
+            <input type="number" id="seniorQuantity" name="seniorQuantity" value="0" min="0">
+        </form>
+            <button type="button" onclick="redirectToPayment()">Proceed to Payment</button>
+        
+    </div>
+
+    <script>
+        function redirectToPayment() {
+            // Prices
+            const childPrice = 20.00;
+            const adultPrice = 75.00;
+            const seniorPrice = 500.00;
+
+            // Quantities
+            const childQuantity = parseInt(document.getElementById('childQuantity').value);
+            const adultQuantity = parseInt(document.getElementById('adultQuantity').value);
+            const seniorQuantity = parseInt(document.getElementById('seniorQuantity').value);
+            if(childQuantity==0 && adultQuantity==0 && seniorQuantity==0)
+        {
+            alert("Please enter valid quantities for all ticket types.");
+        return; 
+    }
+            // Calculate total amount
+            const totalAmount = (childQuantity * childPrice) + (adultQuantity * adultPrice) + (seniorQuantity * seniorPrice) +(childQuantity * 20.00) + (adultQuantity * 75.00) + (seniorQuantity * 500.00);            ;
+
+            // Redirect to payment page with parameters in the URL
+            window.location.href = `/static/pay1.html?child=${childQuantity}&adult=${adultQuantity}&senior=${seniorQuantity}&total=${totalAmount.toFixed(2)}`;
+        }
+
+    </script>
+</body>
+</html>

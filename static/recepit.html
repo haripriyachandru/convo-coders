@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Receipt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #ff6f61, #de1c70);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .receipt-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: #064b91;
+            text-align: center;
+        }
+        h2 {
+            color:rgb(115, 250, 115);
+            text-align: center;
+        }
+        .receipt-section {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #ecf0f1;
+        }
+        .receipt-section p {
+            margin: 5px 0;
+            color: #2c3e50;
+        }
+        hr {
+            margin: 20px 0;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #064b91;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #041d2e;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="receipt-container">
+        <h1>Payment Receipt</h1>
+        <h2>PAYMENT SUCCESSFULL</h2>
+        <div class="receipt-section">
+            <h3>Indiana State Museum Admission Receipt</h3>
+            <p><strong>Child Tickets:</strong> <span id="childTicket"></span></p>
+            <p><strong>Adult Tickets:</strong> <span id="adultTicket"></span></p>
+            <p><strong>Senior Tickets:</strong> <span id="seniorTicket"></span></p>
+            <hr>
+            <p><strong>Total Amount:</strong> INR <span id="totalAmountReceipt"></span></p>
+        </div>
+        <h2>Enter your Email-Id:</h2>
+        <form id="email-form">
+            <label for="email_receiver">Receiver Email:</label>
+            <input type="email" id="email_receiver" name="email_receiver" required><br><br>
+            <button type="button" onclick="alert('Check your mail')">Submit</button>
+
+    </div>
+
+    <script>
+        // Parse URL parameters to get ticket and total info
+        const urlParams = new URLSearchParams(window.location.search);
+        const childQuantity = urlParams.get('child');
+        const adultQuantity = urlParams.get('adult');
+        const seniorQuantity = urlParams.get('senior');
+        const totalAmount = urlParams.get('total');
+
+        // Display receipt details
+        document.getElementById('childTicket').innerText = `${childQuantity} `;
+        document.getElementById('adultTicket').innerText = `${adultQuantity}  `;
+        document.getElementById('seniorTicket').innerText = `${seniorQuantity}`;
+        document.getElementById('totalAmountReceipt').innerText = totalAmount;
+    </script>
+</body>
+</html>
